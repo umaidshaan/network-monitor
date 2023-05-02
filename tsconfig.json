@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Components/Charts/BarChart.jsx", "src/Components/Charts/LineChart.jsx", "src/Components/Charts/PieChart.jsx", "src/pages/api/getData.js"],
   "exclude": ["node_modules"]
 }

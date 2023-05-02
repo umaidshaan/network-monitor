@@ -1,14 +1,18 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import AppContext from '@/Contexts/AppContext';
+import { RouterProvider } from 'react-router-dom';
+import NavBar from '@/Components/Navbar';
+import { useContext } from 'react';
+import { AppDataContext } from '@/Contexts/AppData';
+import useFetchData from '@/hooks/useFetchData';
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const data = useFetchData();
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      
-    </main>
-  )
+      <div>
+          <div>Welcome to Network Manager</div>
+      </div>
+  );
 }

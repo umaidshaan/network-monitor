@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+
+.icon_button {
+    min-width: unset;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+
+    .icon {
+        font-size: 20px;
+    }
+}
