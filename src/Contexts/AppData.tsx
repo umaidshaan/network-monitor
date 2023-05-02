@@ -30,7 +30,6 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
         return {
             data,
             setData: (dd) => {
-                console.log("SSSSSSSSSSSSSSS", dd);
                 setData(dd);
             },
         };
@@ -41,7 +40,6 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
             value={{
                 data,
                 setData: (dd) => {
-                    console.log("SSSSSSSSSSSSSSS", dd);
                     setData(dd);
                 },
             }}>

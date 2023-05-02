@@ -1,0 +1,45 @@
+.tableData {
+    & :global {
+
+        .MuiDataGrid-columnHeader {
+            .MuiDataGrid-columnHeaderTitleContainer{
+                justify-content: center;
+            }
+        }
+
+        .MuiDataGrid-cell{
+            justify-content: center !important;
+        }
+
+        .MuiDataGrid-columnHeader:first-child, .MuiDataGrid-cell:first-child {
+            width: 8.5vw !important;
+            min-width: 8.5vw !important;
+            max-width: 8.5vw !important;
+        }
+
+        .MuiDataGrid-columnHeader:nth-child(2), .MuiDataGrid-cell:nth-child(2) {
+            width: 19vw !important;
+            min-width: 19vw !important;
+            max-width: 19vw !important;
+        }
+
+        .MuiDataGrid-columnHeader:nth-child(3), .MuiDataGrid-cell:nth-child(3) {
+            width: 19vw !important;
+            min-width: 19vw !important;
+            max-width: 19vw !important;
+        }
+
+        .MuiDataGrid-columnHeader:nth-child(4), .MuiDataGrid-cell:nth-child(4) {
+            width: 19vw !important;
+            min-width: 19vw !important;
+            max-width: 19vw !important;
+        }
+
+        .MuiDataGrid-columnHeader:nth-child(5), .MuiDataGrid-cell:nth-child(5) {
+            width: 19vw !important;
+            min-width: 19vw !important;
+            max-width: 19vw !important;
+        }
+
+    }
+}
