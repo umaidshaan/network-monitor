@@ -12,17 +12,20 @@ const lg = 1024;
 const xl = 1280;
 
 const useFetchData = () => {
-    const { setData } = useContext(AppDataContext);
+    const { setData, selectedDate } = useContext(AppDataContext);
     const [newData, setNewData] = useState<filteredNetworkData>();
 
     const path = "http://localhost:3000/api/getData";
 
     const getData = async () => {
-        const date = dayjs("2023-05-02T06:04:19.000Z").format("YYYY-MM-DD");
         const res = await axios(path, {
             params: {
-                end: date,
-                start: dayjs(date).subtract(7, "day").format("YYYY-MM-DD"),
+                end: dayjs(selectedDate)
+                    .add(1, "day")
+                    .format("YYYY-MM-DD"),
+                start: dayjs(selectedDate)
+                    .subtract(7, "day")
+                    .format("YYYY-MM-DD"),
             },
         });
         const batchFilteredArr = formatData(res.data.products);
@@ -99,7 +102,7 @@ const useFetchData = () => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [selectedDate]);
 
     return newData;
 };

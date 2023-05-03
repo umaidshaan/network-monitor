@@ -2,6 +2,7 @@ import React, { type FC, useState, type PropsWithChildren, useMemo, useEffect } 
 import Dialog, { type DialogProps } from "../Components/Dialog";
 import { filteredNetworkData } from "@/pages/types";
 import utils from "@/utils";
+import moment from "moment";
 
 export type DialogOptionProps = Omit<DialogProps, "open" | "onClose"> & {
     fullScreen?: boolean;
@@ -14,6 +15,8 @@ interface IAppDataContextProps {
     setIsAuthenticated: (isAuth: boolean) => void;
     login: (email: string, password: string) => void;
     logout: () => void;
+    selectedDate: string;
+    setDate: (date: string) => void;
 }
 
 export const AppDataContext = React.createContext<IAppDataContextProps>({
@@ -27,12 +30,10 @@ export const AppDataContext = React.createContext<IAppDataContextProps>({
     setIsAuthenticated() {
         // TODO
     },
-    login() {
-
-    },
-    logout() {
-        
-    }
+    login() {},
+    logout() {},
+    selectedDate: moment().format("YYYY-MM-DD"),
+    setDate() {},
 });
 
 
@@ -42,6 +43,8 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
     });
 
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+    const [selectedDate, setDate] = useState(moment().format("YYYY-MM-DD"));
 
     useEffect(() => {
         console.log(utils.getCookie("isAuthenticated"));
@@ -86,8 +89,17 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
             setIsAuthenticated,
             login,
             logout,
+            selectedDate,
+            setDate,
         };
-    }, [data, setData, isAuthenticated, setIsAuthenticated]);
+    }, [
+        data,
+        setData,
+        isAuthenticated,
+        setIsAuthenticated,
+        selectedDate,
+        setDate,
+    ]);
 
     return (
         <AppDataContext.Provider value={memoedValue}>

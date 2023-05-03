@@ -24,7 +24,6 @@ export default function App({ Component, pageProps }: AppProps) {
                             <>
                                 <NavBar />
                                 <div className='pt-[6rem] px-[4rem]'>
-                                    <DatePicker />
                                     <Component {...pageProps} />
                                 </div>
                             </>

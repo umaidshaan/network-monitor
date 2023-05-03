@@ -1,4 +1,4 @@
-import React, { useContext, type FC, useState } from "react";
+import React, { useContext, type FC, useState, useEffect } from "react";
 import Button from "../Button";
 import { generatePath, useNavigate } from "react-router-dom";
 import Hamburger from "../../Icons/Hamburger";
@@ -8,6 +8,8 @@ import { useRouter } from "next/router"
 import Logo from '../../Icons/logo.png';
 import Image from "next/image";
 import { AppDataContext } from "@/Contexts/AppData";
+import CustomDatePicker from "../DatePicker";
+import useFetchData from "@/hooks/useFetchData";
 
 const routes = [
     {
@@ -27,7 +29,9 @@ const routes = [
 const NavBar: FC = () => {
     const { isDeviceSm, isDeviceXs } = useMediaQuery();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { logout } = useContext(AppDataContext);
+    const { logout, selectedDate } = useContext(AppDataContext);
+    const data = useFetchData();
+    
     
     const router = useRouter();
     const handleLogout = () => {
@@ -59,10 +63,9 @@ const NavBar: FC = () => {
                     })}
                 </>
             </div>
-            <div>
-                <Button
-                    onClick={()=>logout()}
-                    className='uppercase'>
+            <div className="flex items-center gap-[2rem]">
+                <CustomDatePicker />
+                <Button onClick={() => logout()} className='uppercase'>
                     Logout
                 </Button>
             </div>
