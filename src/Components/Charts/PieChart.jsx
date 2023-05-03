@@ -9,7 +9,7 @@ const PieChart = ({data}) => {
 
   let formattedData = [];
 
-  Object.keys(data.students).map((key) => {
+  Object.keys(data.students)?.map((key) => {
     formattedData.push({
       date: key,
       STAFF: 0,
@@ -17,8 +17,8 @@ const PieChart = ({data}) => {
   });
 
   
-  formattedData.map((ob) => {
-    Object.keys(data.students[Object.keys(data.students)[0]]).map((keys) => {
+  formattedData?.map((ob) => {
+    Object.keys(data.students[Object.keys(data.students)[0]])?.map((keys) => {
       _.extend(ob, {
         [keys]: 0
       });
@@ -27,9 +27,9 @@ const PieChart = ({data}) => {
 
 
   // Data usage by STAFF
-  formattedData = formattedData.map((ob) => {
+  formattedData = formattedData?.map((ob) => {
     let sum = 0;
-    data.staff[ob.date].map((dataUsed) => {
+    data.staff[ob.date]?.map((dataUsed) => {
       sum += Number(dataUsed.total_octates_used);
     })
 
@@ -39,9 +39,9 @@ const PieChart = ({data}) => {
   });
 
 
-  formattedData = formattedData.map((ob) => {
+  formattedData = formattedData?.map((ob) => {
     
-    Object.keys(ob).map((items) => {
+    Object.keys(ob)?.map((items) => {
 
       if (items === "STAFF" || items === "date") {
         return;
@@ -49,7 +49,7 @@ const PieChart = ({data}) => {
 
       let sum = 0;
 
-      data.students[ob.date][items].map((dataUsed) => {
+      data.students[ob.date][items]?.map((dataUsed) => {
         sum += Number(dataUsed.total_octates_used);
       })
 
@@ -61,12 +61,12 @@ const PieChart = ({data}) => {
 
   let pieData = [];
 
-  Object.keys(formattedData[0]).map((val) => {
+  Object.keys(formattedData[0])?.map((val) => {
     if (val === "date") {
       return;
     }
     let sum = 0;
-    formattedData.map((record) => {
+    formattedData?.map((record) => {
       sum += Number(record[val]);
     })
     pieData.push({

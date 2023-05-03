@@ -11,9 +11,10 @@ const BarChart = ({ data , isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  console.log("bar", data)
   let formattedData = [];
 
-  Object.keys(data.students).map((key) => {
+  Object.keys(data.students)?.map((key) => {
     formattedData.push({
       date: key,
       STAFF: 0,
@@ -21,8 +22,8 @@ const BarChart = ({ data , isDashboard = false }) => {
   });
 
   
-  formattedData.map((ob) => {
-    Object.keys(data.students[Object.keys(data.students)[0]]).map((keys) => {
+  formattedData?.map((ob) => {
+    Object.keys(data.students[Object.keys(data.students)[0]])?.map((keys) => {
       _.extend(ob, {
         [keys]: 0
       });
@@ -31,9 +32,9 @@ const BarChart = ({ data , isDashboard = false }) => {
 
 
   // Data usage by STAFF
-  formattedData = formattedData.map((ob) => {
+  formattedData = formattedData?.map((ob) => {
     let sum = 0;
-    data.staff[ob.date].map((dataUsed) => {
+    data.staff[ob.date]?.map((dataUsed) => {
       sum += Number(dataUsed.total_octates_used);
     })
 
@@ -43,9 +44,9 @@ const BarChart = ({ data , isDashboard = false }) => {
   });
 
 
-  formattedData = formattedData.map((ob) => {
+  formattedData = formattedData?.map((ob) => {
     
-    Object.keys(ob).map((items) => {
+    Object.keys(ob)?.map((items) => {
 
       if (items === "STAFF" || items === "date") {
         return;
@@ -53,7 +54,7 @@ const BarChart = ({ data , isDashboard = false }) => {
 
       let sum = 0;
 
-      data.students[ob.date][items].map((dataUsed) => {
+      data.students[ob.date][items]?.map((dataUsed) => {
         sum += Number(dataUsed.total_octates_used);
       })
 

@@ -27,17 +27,17 @@ const routes = [
 ];
 
 const NavBar: FC = () => {
-    const { isDeviceSm, isDeviceXs } = useMediaQuery();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // const { isDeviceSm, isDeviceXs } = useMediaQuery();
+    // const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { logout, selectedDate } = useContext(AppDataContext);
     const data = useFetchData();
     
     
     const router = useRouter();
-    const handleLogout = () => {
-        setIsMenuOpen(false);
-        // navigate(routes.HOME);
-    };
+    // const handleLogout = () => {
+    //     setIsMenuOpen(false);
+    //     // navigate(routes.HOME);
+    // };
 
     return (
         <div
