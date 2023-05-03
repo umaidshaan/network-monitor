@@ -2,11 +2,10 @@ import mysql from "mysql2/promise";
 
 export async function query({ query, values = [] }: { query: string, values: string[] }) {
     const dbconnection = await mysql.createConnection({
-        host: "192.168.11.205",
-        database: "radius",
-        // port: 8889,
-        user: "network_analyzer",
-        password: "hannah_montana",
+        host: process.env.DB_Host,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
     });
     try {
     const [results] = await dbconnection.execute(query, values);

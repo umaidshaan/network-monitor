@@ -4,13 +4,6 @@ import { AppDataContext } from '@/Contexts/AppData';
 import { Box } from '@mui/material';
 import React, { useContext } from 'react'
 
-export interface BarData {
-    class: "AD";
-    CS19: 137;
-    CS20: 96;
-    CS21: 72;
-    CS22: 140;
-}
 
 const Bar = () => {
     const { data } = useContext(AppDataContext);

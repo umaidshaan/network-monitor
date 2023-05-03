@@ -7,6 +7,7 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useRouter } from "next/router"
 import Logo from '../../Icons/logo.png';
 import Image from "next/image";
+import { AppDataContext } from "@/Contexts/AppData";
 
 const routes = [
     {
@@ -18,10 +19,6 @@ const routes = [
         location: "/bar",
     },
     {
-        title: "Line",
-        location: "/line",
-    },
-    {
         title: "Pie",
         location: "/pie",
     },
@@ -30,6 +27,7 @@ const routes = [
 const NavBar: FC = () => {
     const { isDeviceSm, isDeviceXs } = useMediaQuery();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { logout } = useContext(AppDataContext);
     
     const router = useRouter();
     const handleLogout = () => {
@@ -39,10 +37,14 @@ const NavBar: FC = () => {
 
     return (
         <div
-            className={` px-[4rem] fixed z-[2] bg-nav-blue text-gray-100 flex flex-col h-[5rem] justify-center w-full ${styles.bottomShadow}`}>
+            className={`flex justify-between items-center px-[4rem] fixed z-[2] bg-[#353535] text-gray-100 flex-row h-[5rem] w-full ${styles.bottomShadow}`}>
             <div className='flex items-center gap-[3rem]'>
                 <Button link={"/"}>
-                    <Image src={Logo} alt="logo" className="w-auto h-[2.8rem]"/>
+                    <Image
+                        src={Logo}
+                        alt='logo'
+                        className='w-auto h-[2.8rem]'
+                    />
                 </Button>
                 <>
                     {routes.map((paths) => {
@@ -56,6 +58,13 @@ const NavBar: FC = () => {
                         );
                     })}
                 </>
+            </div>
+            <div>
+                <Button
+                    onClick={()=>logout()}
+                    className='uppercase'>
+                    Logout
+                </Button>
             </div>
         </div>
     );

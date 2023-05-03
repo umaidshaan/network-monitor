@@ -3,12 +3,85 @@ import { tokens } from "../../theme";
 import { useTheme } from "@mui/material";
 import { mockPieData as data } from "../../data/mockData";
 
-const PieChart = () => {
+const PieChart = ({data}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  let formattedData = [];
+
+  Object.keys(data.students).map((key) => {
+    formattedData.push({
+      date: key,
+      STAFF: 0,
+    });
+  });
+
+  
+  formattedData.map((ob) => {
+    Object.keys(data.students[Object.keys(data.students)[0]]).map((keys) => {
+      _.extend(ob, {
+        [keys]: 0
+      });
+    })
+  });
+
+
+  // Data usage by STAFF
+  formattedData = formattedData.map((ob) => {
+    let sum = 0;
+    data.staff[ob.date].map((dataUsed) => {
+      sum += Number(dataUsed.total_octates_used);
+    })
+
+    ob.STAFF = sum.toFixed(2);
+
+    return ob;
+  });
+
+
+  formattedData = formattedData.map((ob) => {
+    
+    Object.keys(ob).map((items) => {
+
+      if (items === "STAFF" || items === "date") {
+        return;
+      }
+
+      let sum = 0;
+
+      data.students[ob.date][items].map((dataUsed) => {
+        sum += Number(dataUsed.total_octates_used);
+      })
+
+      ob[items] = sum.toFixed(2);
+    })
+
+    return ob;
+  });
+
+  let pieData = [];
+
+  Object.keys(formattedData[0]).map((val) => {
+    if (val === "date") {
+      return;
+    }
+    let sum = 0;
+    formattedData.map((record) => {
+      sum += Number(record[val]);
+    })
+    pieData.push({
+      id: val,
+      label: val,
+      value: sum.toFixed(2),
+    })
+  })
+
+  console.log("formattedData", formattedData)
+  console.log("pieData",pieData)
+
   return (
     <ResponsivePie
-      data={data}
+      data={pieData}
       theme={{
         axis: {
           domain: {
