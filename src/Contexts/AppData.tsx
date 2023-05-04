@@ -2,6 +2,7 @@ import React, { type FC, useState, type PropsWithChildren, useMemo, useEffect } 
 import Dialog, { type DialogProps } from "../Components/Dialog";
 import { filteredNetworkData } from "@/pages/types";
 import utils from "@/utils";
+import jwt from "jwt-decode";
 import moment from "moment";
 import { useRouter } from "next/router";
 
@@ -57,14 +58,18 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
             if (token) {
                 sessionStorage.setItem("nm_auth_token", token);
                 router.push("/");
-                setIsAuthenticated(true);
+                if ((jwt(token) as any)?.email === "steve@iiitr.ac.in")
+                    setIsAuthenticated(true);
+                else 
+                    setIsAuthenticated(false);
             }
         }
     }, []);
 
     useEffect(() => {
-        if (sessionStorage.getItem("nm_auth_token")) {
-          setIsAuthenticated(true);
+        const token = sessionStorage.getItem("nm_auth_token")
+        if (token && (jwt(token) as any)?.email === "steve@iiitr.ac.in") {
+            setIsAuthenticated(true);
         } else {
             setIsAuthenticated(false);
         }

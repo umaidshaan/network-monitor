@@ -24,7 +24,7 @@ const useFetchData = () => {
                     .add(1, "day")
                     .format("YYYY-MM-DD"),
                 start: dayjs(selectedDate)
-                    .subtract(7, "day")
+                    .subtract(6, "day")
                     .format("YYYY-MM-DD"),
             },
         });
