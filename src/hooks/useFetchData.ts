@@ -15,7 +15,7 @@ const useFetchData = () => {
     const { setData, selectedDate } = useContext(AppDataContext);
     const [newData, setNewData] = useState<filteredNetworkData>();
 
-    const path = "http://localhost:3000/api/getData";
+    const path = `${window.location.href}/api/getData`;
 
     const getData = async () => {
         const res = await axios(path, {
@@ -35,7 +35,7 @@ const useFetchData = () => {
     };
 
     const formatData = (data: NetworkRecords[]) => {
-        const filteredData: NetworkRecords[] = data.map((rec) => {
+        const filteredData: NetworkRecords[] = data?.map((rec) => {
             return {
                 ...rec,
                 acctstarttime: dayjs(rec.acctstarttime).format("YYYY-MM-DD"),

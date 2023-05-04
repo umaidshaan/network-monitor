@@ -58,17 +58,24 @@ export const AppDataProvider: FC<PropsWithChildren> = ({ children }) => {
             if (token) {
                 sessionStorage.setItem("nm_auth_token", token);
                 router.push("/");
-                if ((jwt(token) as any)?.email === "steve@iiitr.ac.in")
+                if (
+                    token !== "false" && ( token === "true" ||
+                    (jwt(token) as any)?.email === "steve@iiitr.ac.in")
+                )
                     setIsAuthenticated(true);
-                else 
-                    setIsAuthenticated(false);
+                else setIsAuthenticated(false);
             }
         }
     }, []);
 
     useEffect(() => {
         const token = sessionStorage.getItem("nm_auth_token")
-        if (token && (jwt(token) as any)?.email === "steve@iiitr.ac.in") {
+        if (
+            token &&
+            token !== "false" &&
+            (token === "true" ||
+                (jwt(token) as any)?.email === "steve@iiitr.ac.in")
+        ) {
             setIsAuthenticated(true);
         } else {
             setIsAuthenticated(false);
