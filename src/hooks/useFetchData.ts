@@ -47,10 +47,10 @@ const useFetchData = () => {
             staff: {},
         };
 
-        const students = filteredData.filter(
+        const students = filteredData?.filter(
             (rec) => rec.username.slice(0, 2).toUpperCase() === "CS"
         );
-        const staff = filteredData.filter(
+        const staff = filteredData?.filter(
             (rec) => rec.username.slice(0, 2).toUpperCase() != "CS"
         );
 
